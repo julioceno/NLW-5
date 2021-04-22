@@ -1,0 +1,14 @@
+* As migrations criam as tabelas do banco de dados através da linha de comando
+
+* Na pasta entities tem todas as entidade que vão fazer os dados serem salvos na tabela em questão (Explicação 
+na entities/Setting.ts)
+
+* No repositories tem todos os repositórios que basicamente determinamos os métodos que será usado naquela
+tabela através  da classe Repository do typeorm e especificamos a qual tabela será feito esses métodos 
+
+* No services tem todos as interações que são feitas no banco de dados, como salvar algo ou fazer um findOne
+
+* No controller tem as funcionalidades de cada rota, e uma dessas funcionalidades é chamar os métodos que
+estão dentro de services
+
+* No routes só chamamos o controller para servir a rota para os usuários

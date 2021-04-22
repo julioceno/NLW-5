@@ -5,10 +5,10 @@ import { v4 as uuid } from "uuid";
 /**
  * Aqui é a entidade que salva os dados na tabela de settings
  */ 
-@Entity("Settings")
+@Entity("Settings") // Nome da tabela
 class Setting {
 
-    @PrimaryColumn()
+    @PrimaryColumn() // Tipo da coluna
     id: string;
 
     @Column()
