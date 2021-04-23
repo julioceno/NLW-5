@@ -30,12 +30,23 @@ io.on("connect", async Socket => {
 
         const { socket_id } = await connectionsService.findByUserId(user_id)
 
+        console.log(socket_id)
         // A mensagem sera enviada pelo socket da conversa e será emitida pelo admin_send_to_client
         io.to(socket_id).emit("admin_send_to_client", {
             text,
-            socket_id: socket_id
+            socket_id: Socket.id
         })
 
 
     });
+
+    Socket.on("admin_user_in_support", async params => {
+        const { user_id } = params;
+        await connectionsService.updateAdminId(user_id, Socket.id)
+
+        const allConnectionsWithoutAdmin = await connectionsService.findAllWithoutAdmin();
+
+        // io.emit("admin_list_all_users", allConnectionsWithoutAdmin);
+
+    }) 
 });

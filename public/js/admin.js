@@ -2,12 +2,14 @@ const socket = io(); // Esse socket é criado assim que o admin entra na pagina
 let connectionsUsers = [];
 
 socket.on("admin_list_all_users", (connections) => {
+  console.log(connections)
   connectionsUsers = connections;
   document.getElementById("list_users").innerHTML = "";
 
   let template = document.getElementById("template").innerHTML;
 
   connections.forEach((connection) => {
+    console.log(connection)
     const rendered = Mustache.render(template, {
       email: connection.user.email,
       id: connection.socket_id,
@@ -95,11 +97,11 @@ function sendMessage(id) {
 
 // não ta chegando aqui
 socket.on("admin_receive_message", (data) => {
-  console.log(data);
   const connection = connectionsUsers.find(
     (connection) => (connection.socket_id === data.socket_id)
   );
 
+  console.log(connectionsUsers)
   const divMessages = document.getElementById(
     `allMessages${connection.user_id}`
   );
